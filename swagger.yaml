@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Swagger Cognetiv APIs
+  description: Cognetiv Backend APIs
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000/api
+    description: local server
+
+paths:
+
+  # Bid APIS 
+
+  /bid/bidOnPet:
+    post:
+      summary: Add Bid On Pet 
+      operationId: BidOnPet
+      tags:
+        - Bid 
+      requestBody:
+        content:
+          application/json:
+            schema:              
+              type: object
+              required:
+              - username
+              - petId
+              - bidValue
+              properties:
+                username:
+                  type: string
+                  example: ''
+                petId:
+                  type: number
+                  example: 0
+                bidValue:
+                  type: number
+                  example: 0
+      responses:
+        '200':
+          description: Object contains User Data and Token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Success:
+                    type: boolean
+                  Status:
+                    type: number
+                  Message:
+                    type: string
+                  Data: 
+                    type: object
+
+  /bid/getPetBids/{petId}:
+    get:
+      summary: Get All Bids For Pet
+      operationId: GetPetBids
+      tags:
+        - Bid
+      parameters:
+        - in: path
+          name: petId   
+          required: true
+          schema:
+            type: number
+            description: pet id  
+      responses:
+        '200':
+          description: Success Response Object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Status:
+                    type: boolean
+                  Message:
+                    type: string
+                  Data: 
+                    type: object
+
+  /bid/getWinnerBidders/{petId}:
+    get:
+      summary: Get Winner Bidders
+      operationId: GetWinnerBidders
+      tags:
+        - Bid
+      parameters:
+        - in: path
+          name: petId   
+          required: true
+          schema:
+            type: number
+            description: pet id  
+      responses:
+        '200':
+          description: Success Response Object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Status:
+                    type: boolean
+                  Message:
+                    type: string
+                  Data: 
+                    type: object
+                                    
+components:
+  securitySchemes:
+    bearerAuth:   
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
