@@ -12,6 +12,8 @@ Backend APIS
 
 ## Run On Local
 - Clone the repository.
+- Create database called cognetiv-db for local env.
+- Create database called cognetiv-test-db for test env.
 - npm install
 - npm start 
 - open swagger link: http://localhost:5000/cognetiv-backend-apis/ 
